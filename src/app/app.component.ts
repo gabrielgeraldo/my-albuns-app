@@ -20,7 +20,7 @@ export class AppComponent {
   private onClick() {
     alert('Clicked in menu item')
   }
-
+  
   private closeApp() {
     if (this.proAppConfigService.insideProtheus()) {
       this.proAppConfigService.callAppClose();
@@ -28,5 +28,5 @@ export class AppComponent {
       alert('O App não está sendo executado dentro do Protheus.');
     }
   }
-
+  
 }

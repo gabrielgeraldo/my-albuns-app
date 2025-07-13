@@ -10,7 +10,7 @@ export class AlbunsService {
 
   public getData() {
     // return this.http.get(`http://localhost:8084/rest/albuns`);
-    console.log(this.http.get(`/albuns`))
+    // console.log("TESTEE"+this.http.get(`/albuns`))
     return this.http.get(`/albuns`);
   }
 
