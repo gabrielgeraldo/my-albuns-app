@@ -9,7 +9,10 @@
         [p-sort]="true"
         [p-striped]="true"
         [p-columns]="tableColumns"
-        [p-items]="tableItems"     
+        [p-items]="tableItems"
+        (p-selected)="refreshDeleteButton()"
+        (p-unselected)="refreshDeleteButton()"
+        [p-loading]="isBusy"     
     >
     </po-table>
 

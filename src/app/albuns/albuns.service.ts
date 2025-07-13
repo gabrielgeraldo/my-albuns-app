@@ -10,7 +10,6 @@ export class AlbunsService {
 
   public getData() {
     // return this.http.get(`http://localhost:8084/rest/albuns`);
-    // console.log("TESTEE"+this.http.get(`/albuns`))
     return this.http.get(`/albuns`);
   }
 
@@ -28,8 +27,9 @@ export class AlbunsService {
     return this.http.put(`/api/v1/products/${productData.id}`, productData);
   }
 
-  public delete(id: string ) {
-    return this.http.delete(`/api/v1/products/${id}`);
+  public delete(filial: string, codigo: string ) {
+    // return this.http.delete(`/api/v1/products/${id}`);
+    return this.http.delete(`/albuns/${filial}/${codigo}`);
   }
 
   public findById(id: string) {

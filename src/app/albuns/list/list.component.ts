@@ -77,6 +77,11 @@ export class ListComponent implements OnInit {
     return this.tableItems.filter( (item: any) => item.$selected).length > 0;
   }
 
+  public refreshDeleteButton() {
+    const selectedRows = this.tableItems.filter( (item: any) => item.$selected);
+    this.pageActions[1].disabled = selectedRows.length === 0;
+  }
+
   private onDeleteSelected() {
     this.poDialog.confirm({
       title: "Excluir albuns",
@@ -86,13 +91,13 @@ export class ListComponent implements OnInit {
         const selectedRows = this.tableItems.filter( (item: any) => item.$selected);
         const observers = [];
         for (const row of selectedRows) {
-          observers.push(this.service.delete(row["id"]));
+          observers.push(this.service.delete(row["filial"],row["codigo"]));
         }
 
         forkJoin(observers).subscribe({
           next: () => {
             this.notification.success('Excluído com sucesso');
-            // this.init();
+            this.ngOnInit();
           },
           complete: () => this.isBusy = false
         })
