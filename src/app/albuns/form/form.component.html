@@ -6,7 +6,37 @@
     (p-save-new)="onSaveAndNewClick()"
     p-title="Cadastro de album" >
 
-    <po-dynamic-form #dynamicForm [p-fields]="formFields"></po-dynamic-form>
+    <po-dynamic-form #dynamicForm 
+    
+        [p-fields]="formFields"
+        
+        
+        >
+        
+    </po-dynamic-form>
+
+    <br/>
+
+    
+
+    <po-divider></po-divider>
+
+    <div class="po-row">
+        <po-button class="po-md-3" p-label="Add Item" (p-click)="addItem()"> </po-button>
+    </div>
+
+    <br/>
+
+    <po-table
+        p-container="border"
+        [p-sort]="true"
+        [p-columns]="columnFormFieldsItens"
+        [p-actions]="actions"
+        [p-striped]="true"
+        [p-items]="formFieldsItens"
+        [contentEditable]="true"
+    >
+    </po-table>
 
 </po-page-edit>
 

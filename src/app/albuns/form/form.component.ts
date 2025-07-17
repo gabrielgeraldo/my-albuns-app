@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PoBreadcrumb, PoDynamicFormComponent, PoDynamicFormField, PoNotificationService } from '@po-ui/ng-components';
+import { PoBreadcrumb, PoDynamicFormComponent, PoDynamicFormField, PoNotificationService, PoTableAction, PoTableColumn, PoTableComponent } from '@po-ui/ng-components';
 import { AlbunsService } from '../albuns.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable, ObservableInput } from 'rxjs';
 import { Location } from '@angular/common'
 
 @Component({
@@ -14,10 +14,15 @@ export class FormComponent implements OnInit {
   @ViewChild(PoDynamicFormComponent, { static: true })
   dynamicForm!: PoDynamicFormComponent;
 
+  @ViewChild(PoTableComponent, { static: true }) poTable!: PoTableComponent;
+
   public isBusy: boolean = false;
   public editMode: boolean = false;
 
+  public tableItems = [];
+
   public readonly formFields: PoDynamicFormField[] = [
+    
     {
       property: 'filial',
       required: true,
@@ -45,15 +50,26 @@ export class FormComponent implements OnInit {
       required: true,
       gridColumns: 6,
       placeholder: 'nomealbum',
-    }
+    },
+    
   ];
-  
+
+  public formFieldsItens: Array<any> = [
+    
+  ]
+
+  public readonly columnFormFieldsItens: PoTableColumn[] = [
+     { property: 'id', type: 'number'},
+     { property: 'descricao', type: 'number', },
+  ]
+
   public readonly breadcrumb: PoBreadcrumb = {
     items: [
       { label: 'Albuns', link: '/' },
       { label: 'Cadastro de album' },
     ]
   };
+Array: any;
 
   get isFormInvalid(): boolean {
     if (this.dynamicForm)
@@ -81,6 +97,23 @@ export class FormComponent implements OnInit {
       })
     }
   }
+
+  addItem() {
+    this.formFieldsItens = [...this.formFieldsItens, this.formFieldsItens];
+    // this.itemIndex++;
+  }
+
+  remove(item: { [key: string]: any }) {
+    this.poTable.removeItem(item);
+  }
+
+  actions: Array<PoTableAction> = [
+    {
+      icon: 'an an-currency-circle-dollar',
+      label: 'Apply Discount',
+    },
+    { action: this.remove.bind(this), icon: 'po-icon an an-trash', label: 'Remove' }
+  ];
 
   onCancelClick(): void {
     this.location.back();
@@ -115,6 +148,8 @@ export class FormComponent implements OnInit {
   private save(data: any): Observable<any> {
     if (this.editMode) 
       return this.service.update(data);
+    console.log(this.dynamicForm.form.value)
+    // console.log(JSON.stringify(this.dynamicForm.form))
     return this.service.save(data);
   }
 
