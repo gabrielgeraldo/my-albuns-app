@@ -40,7 +40,7 @@ export class ListComponent implements OnInit {
 
         // console.log(response); 
 
-        this.tableItems = response.itens;
+        // this.tableItems = response.itens;
 
       },complete: () => this.isBusy = false
     })
