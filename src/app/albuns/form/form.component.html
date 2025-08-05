@@ -1,47 +1,42 @@
-<po-page-edit
-    [p-breadcrumb]="breadcrumb"
-    (p-cancel)="onCancelClick()"
-    [p-disable-submit]="isFormInvalid"
-    (p-save)="onSaveClick()"
-    (p-save-new)="onSaveAndNewClick()"
-    p-title="Cadastro de album" >
+<po-page-edit p-title="Cadastrar álbum" (p-cancel)="cancel()" (p-save)="onSaveClick()">
 
-    <po-dynamic-form #dynamicForm 
-    
-        [p-fields]="formFields"
-        
-        
-        >
-        
-    </po-dynamic-form>
-
-    <br/>
-
-    
-
-    <po-divider></po-divider>
-
+  <form [formGroup]="reactiveForm">
     <div class="po-row">
-        <po-button class="po-md-3" p-label="Add Item" (p-click)="addItem()"> </po-button>
+      <div class="po-row">
+        <po-input class="po-lg-2" formControlName="codigo" p-clean p-icon="an an-user" p-label="Código"> </po-input>
+        <po-input class="po-md-9" formControlName="artista" p-clean p-icon="an an-user" p-label="Artista"> </po-input>
+      </div>
+      <po-input class="po-md-10" formControlName="album" p-clean p-icon="an an-user" p-label="Álbum"> </po-input>
     </div>
 
-    <br/>
+    <br />
 
-    <po-table
-        p-container="border"
-        [p-sort]="true"
-        [p-columns]="columnFormFieldsItens"
-        [p-actions]="actions"
-        [p-striped]="true"
-        [p-items]="formFieldsItens"
-        [contentEditable]="true"
-    >
-    </po-table>
+    <!-- FormArray -->
+    <po-widget>
+      <div formArrayName="musicas">
+        <div>
+          <po-button p-label="Adicionar" (p-click)="addItem()"> </po-button>
+          <br />
+          <br />
+          <div *ngFor="let musica of musicas.controls; let i=index">
+            <po-widget>
+              <fieldset [formGroupName]="i">
+                <div class="po-row">
+                  <po-input class="po-lg-2" formControlName="numero" p-clean p-icon="an an-user" p-label="Número">
+                  </po-input>
+                  <po-input class="po-md-7" formControlName="nome" p-clean p-icon="an an-user" p-label="Nome">
+                  </po-input>
+                </div>
+                <br />
+                <po-button p-label="Excluir" (p-click)="addItem()"> </po-button>
+              </fieldset>
+            </po-widget>
+          </div>
+        </div>
+      </div>
+    </po-widget>
+    <!-- FormArray -->
+
+  </form>
 
 </po-page-edit>
-
-<po-loading-overlay
-    *ngIf="isBusy"
-    [p-screen-lock]="true"
-    p-text="Aguarde" >
-</po-loading-overlay>

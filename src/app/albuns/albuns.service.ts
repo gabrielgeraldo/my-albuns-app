@@ -18,7 +18,7 @@ export class AlbunsService {
       httpOptions = {
         headers: new HttpHeaders({
         'Content-Type':   'application/json',
-        'Authorization':  'Bearer ' + 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkdhYnJpZWxHZXJhbGRvIiwiaWF0IjoxNzU0NDEwOTEwLCJ1c2VyaWQiOiIwMDAwMDMiLCJleHAiOjE3NTQ0MTQ1MTAsImVudklkIjoic2lnYSJ9.et8chxLJj2O6dnJZOcPGaAhH4arU9EZ7a87_GYmdvnqm_0qSwIy00g-ULwShzzCfTDpmIMlwffgL_UV8OUgjdj4KgGcMZCVpH9IN1yD8K5M94mig6cfafs_MH-FPXN9HFmiUQsjw27yPKtzoLPt6JqkGYczi2gn0svY3v4qDwKschjBmsdMqB0ftEFp-C0wjISlSFPJDJBCFrO0auB_qKsCSr2uGNarZBrHouC-h5AgohO5rzhGs9ctqpax0IX9pSlTVvKCLEYEIOCNYgpqRC8ymCEATDdfvc3ZvRNPbRopCjt1TonNc5Ubo52ZV8B53pLpXR3Fdx__737rGUvyYSQ'
+        'Authorization':  'Bearer ' + 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkdhYnJpZWxHZXJhbGRvIiwiaWF0IjoxNzU0NDE3NDg4LCJ1c2VyaWQiOiIwMDAwMDMiLCJleHAiOjE3NTQ0MjEwODgsImVudklkIjoic2lnYSJ9.JFWNu_8CsUUJNaIXWefizzbfJqGuP3T1deIYgUNet8ku3kmhU4j57JFsQYqkf2mU_9djyNDM3Z8RO7vjljAILVhhJdLL6dsFrjwXkDKtPpZ-c3x5ZOc_MHxcyqK-8zAdrFCnoCcK-EQGTfC-NbuOGc0UCP8baW2S1IZn5AFyEHcYtAKCQuyEUIgsS3vvYR1J-GJaz2BjoU8Ce4eHDk2zHsx8uyfyVZJzF8eKB0NR0MxC7pq8dqlGE6D1PUuDJ7wsaP9l486h5L8XkBZhyVeO3AB7Z-53vluJC_9Lf3DvlbkJQHUR3hHbz_BQAn5zsxkb2RqT7XKaSPvKh2UFsDqspg'
       })};
       return this.http.get(`http://localhost:8084/rest/albuns`, httpOptions);
     }
@@ -29,9 +29,21 @@ export class AlbunsService {
   }
 
   public save(productData: any ) {
-     // console.log(productData)
-    // return this.http.post(`http://localhost:8084/rest/albuns`, productData);
-    return this.http.post(`/albuns`, productData);
+    if (this.proAppConfigService.insideProtheus()) {
+      return this.http.post(`/albuns`, productData);
+    } else {
+      console.log(productData);
+      var httpOptions = {};
+      httpOptions = {
+        headers: new HttpHeaders({
+        'Content-Type':   'application/json',
+        'Authorization':  'Bearer ' + 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkdhYnJpZWxHZXJhbGRvIiwiaWF0IjoxNzU0NDE3NDg4LCJ1c2VyaWQiOiIwMDAwMDMiLCJleHAiOjE3NTQ0MjEwODgsImVudklkIjoic2lnYSJ9.JFWNu_8CsUUJNaIXWefizzbfJqGuP3T1deIYgUNet8ku3kmhU4j57JFsQYqkf2mU_9djyNDM3Z8RO7vjljAILVhhJdLL6dsFrjwXkDKtPpZ-c3x5ZOc_MHxcyqK-8zAdrFCnoCcK-EQGTfC-NbuOGc0UCP8baW2S1IZn5AFyEHcYtAKCQuyEUIgsS3vvYR1J-GJaz2BjoU8Ce4eHDk2zHsx8uyfyVZJzF8eKB0NR0MxC7pq8dqlGE6D1PUuDJ7wsaP9l486h5L8XkBZhyVeO3AB7Z-53vluJC_9Lf3DvlbkJQHUR3hHbz_BQAn5zsxkb2RqT7XKaSPvKh2UFsDqspg'
+      })};
+     
+    // this.http.post(`http://localhost:8084/rest/albuns`, productData, httpOptions).subscribe( data => {console.log(data);});
+
+     return this.http.post(`http://localhost:8084/rest/albuns`, productData, httpOptions);
+    }
   }
 
   public update(productData: any ) {
