@@ -7,7 +7,8 @@ import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
+  standalone: false
 })
 export class ListComponent implements OnInit {
 
@@ -37,10 +38,10 @@ export class ListComponent implements OnInit {
     
     this.service.getData().subscribe({
       next: (response: any) => {
+        
+        console.log(response); 
 
-        // console.log(response); 
-
-        // this.tableItems = response.itens;
+        this.tableItems = response.itens;
 
       },complete: () => this.isBusy = false
     })
