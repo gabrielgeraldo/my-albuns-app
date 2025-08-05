@@ -92,6 +92,7 @@ export class ListComponent implements OnInit {
         const selectedRows = this.tableItems.filter( (item: any) => item.$selected);
         const observers = [];
         for (const row of selectedRows) {
+          console.log("teste");
           observers.push(this.service.delete(row["filial"],row["codigo"]));
         }
 

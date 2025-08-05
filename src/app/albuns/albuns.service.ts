@@ -8,8 +8,10 @@ import { ProAppConfigService } from '@totvs/protheus-lib-core';
 })
 export class AlbunsService {
 
+  
   constructor(private http: HttpClient, private proAppConfigService: ProAppConfigService) { }
 
+  
   public getData() {
     if (this.proAppConfigService.insideProtheus()) {
       return this.http.get(`albuns`);
@@ -18,7 +20,7 @@ export class AlbunsService {
       httpOptions = {
         headers: new HttpHeaders({
         'Content-Type':   'application/json',
-        'Authorization':  'Bearer ' + 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkdhYnJpZWxHZXJhbGRvIiwiaWF0IjoxNzU0NDE3NDg4LCJ1c2VyaWQiOiIwMDAwMDMiLCJleHAiOjE3NTQ0MjEwODgsImVudklkIjoic2lnYSJ9.JFWNu_8CsUUJNaIXWefizzbfJqGuP3T1deIYgUNet8ku3kmhU4j57JFsQYqkf2mU_9djyNDM3Z8RO7vjljAILVhhJdLL6dsFrjwXkDKtPpZ-c3x5ZOc_MHxcyqK-8zAdrFCnoCcK-EQGTfC-NbuOGc0UCP8baW2S1IZn5AFyEHcYtAKCQuyEUIgsS3vvYR1J-GJaz2BjoU8Ce4eHDk2zHsx8uyfyVZJzF8eKB0NR0MxC7pq8dqlGE6D1PUuDJ7wsaP9l486h5L8XkBZhyVeO3AB7Z-53vluJC_9Lf3DvlbkJQHUR3hHbz_BQAn5zsxkb2RqT7XKaSPvKh2UFsDqspg'
+        'Authorization':  'Bearer ' + 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkdhYnJpZWxHZXJhbGRvIiwiaWF0IjoxNzU0NDI1OTYyLCJ1c2VyaWQiOiIwMDAwMDMiLCJleHAiOjE3NTQ0Mjk1NjIsImVudklkIjoic2lnYSJ9.YvniJslRYfVQyuvTyss4LfQHrIop9_gZsh9W5coa_6cefXWF6lJPmzJeBlVgn4XjX1mRTHkonme99YTTEhR4UCnHka9Gr9KDgq5VrSjhrLdHFGYy_Sy6JhR_HMJ6ovt1RiNt-bJhmGcb9nyS6JoYAURhBOy6BkMzehtmSnl2ZJ3yQMHj6ESXwyDJeg46Wsce0ZkX8-4WqOXZ-VLPNv-0GP9pS0LDWLQaEBBGWz6a80AIWzox_RjEVmnJ_BxyNXZM2Zkpkx9u5TZr8hLvKu_7dIuvC0NfIcwYw_uruf2lR_yH5I7089CrCIjsRy5GW4T2J17REfgMxjRhAjedwRQ9dw'
       })};
       return this.http.get(`http://localhost:8084/rest/albuns`, httpOptions);
     }
@@ -37,7 +39,7 @@ export class AlbunsService {
       httpOptions = {
         headers: new HttpHeaders({
         'Content-Type':   'application/json',
-        'Authorization':  'Bearer ' + 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkdhYnJpZWxHZXJhbGRvIiwiaWF0IjoxNzU0NDE3NDg4LCJ1c2VyaWQiOiIwMDAwMDMiLCJleHAiOjE3NTQ0MjEwODgsImVudklkIjoic2lnYSJ9.JFWNu_8CsUUJNaIXWefizzbfJqGuP3T1deIYgUNet8ku3kmhU4j57JFsQYqkf2mU_9djyNDM3Z8RO7vjljAILVhhJdLL6dsFrjwXkDKtPpZ-c3x5ZOc_MHxcyqK-8zAdrFCnoCcK-EQGTfC-NbuOGc0UCP8baW2S1IZn5AFyEHcYtAKCQuyEUIgsS3vvYR1J-GJaz2BjoU8Ce4eHDk2zHsx8uyfyVZJzF8eKB0NR0MxC7pq8dqlGE6D1PUuDJ7wsaP9l486h5L8XkBZhyVeO3AB7Z-53vluJC_9Lf3DvlbkJQHUR3hHbz_BQAn5zsxkb2RqT7XKaSPvKh2UFsDqspg'
+        'Authorization':  'Bearer ' + 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkdhYnJpZWxHZXJhbGRvIiwiaWF0IjoxNzU0NDI1OTYyLCJ1c2VyaWQiOiIwMDAwMDMiLCJleHAiOjE3NTQ0Mjk1NjIsImVudklkIjoic2lnYSJ9.YvniJslRYfVQyuvTyss4LfQHrIop9_gZsh9W5coa_6cefXWF6lJPmzJeBlVgn4XjX1mRTHkonme99YTTEhR4UCnHka9Gr9KDgq5VrSjhrLdHFGYy_Sy6JhR_HMJ6ovt1RiNt-bJhmGcb9nyS6JoYAURhBOy6BkMzehtmSnl2ZJ3yQMHj6ESXwyDJeg46Wsce0ZkX8-4WqOXZ-VLPNv-0GP9pS0LDWLQaEBBGWz6a80AIWzox_RjEVmnJ_BxyNXZM2Zkpkx9u5TZr8hLvKu_7dIuvC0NfIcwYw_uruf2lR_yH5I7089CrCIjsRy5GW4T2J17REfgMxjRhAjedwRQ9dw'
       })};
      
     // this.http.post(`http://localhost:8084/rest/albuns`, productData, httpOptions).subscribe( data => {console.log(data);});
@@ -51,8 +53,21 @@ export class AlbunsService {
   }
 
   public delete(filial: string, codigo: string ) {
-    // return this.http.delete(`/api/v1/products/${id}`);
-    return this.http.delete(`/albuns/${filial}/${codigo}`);
+    
+    if (this.proAppConfigService.insideProtheus()) {
+      return this.http.delete(`/albuns`);
+    } else {
+      var httpOptions = {};
+      httpOptions = {
+        headers: new HttpHeaders({
+        'Content-Type':   'application/json',
+        'Authorization':  'Bearer ' + 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBKd3RQdWJsaWNLZXlGb3IyNTYifQ.eyJpc3MiOiJUT1RWUy1BRFZQTC1GV0pXVCIsInN1YiI6IkdhYnJpZWxHZXJhbGRvIiwiaWF0IjoxNzU0NDIyMzQ2LCJ1c2VyaWQiOiIwMDAwMDMiLCJleHAiOjE3NTQ0MjU5NDYsImVudklkIjoic2lnYSJ9.AoKsHacFlcIuEE6aAxxpVZ1FvIYvdZnQ855vik_tPJ_KC7nI4p_bq-JDixLoLXmn4-t1gZjRR34NTePQWBHU0aV_UARmVhWdniATlykrOGnhjG7PmVPSkEFKn6Qeyyi6BAJ6lOxpZpafTpzXzyGcOQ6sNm5BcfIFlpb67Mmi5yuY7OB6gmytf8SIF5T-Z7BC3LQPPkkjFJvmxMHHy8FLq57lI2w6uiXtVTr7rpQM4W9wt1KfJ3GfwlemWu-xQotYzZJwHqz0beEpK9yps8hkcI4TUULaSnAIAVyExjkG2WTD4bvpVBR2CFp07cirYHtPMgAQldxTdyPYYU6O03U1_g'
+      })};
+      
+      console.log(`http://localhost:8084/rest/albuns?filial=${filial}&codigo=${codigo}`);
+
+      return this.http.delete(`http://localhost:8084/rest/albuns?filial=${filial}&codigo=${codigo}`, httpOptions);
+    }
   }
 
   public findById(id: string) {

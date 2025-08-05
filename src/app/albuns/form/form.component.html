@@ -3,7 +3,6 @@
   <form [formGroup]="reactiveForm">
     <div class="po-row">
       <div class="po-row">
-        <po-input class="po-lg-2" formControlName="codigo" p-clean p-icon="an an-user" p-label="Código"> </po-input>
         <po-input class="po-md-9" formControlName="artista" p-clean p-icon="an an-user" p-label="Artista"> </po-input>
       </div>
       <po-input class="po-md-10" formControlName="album" p-clean p-icon="an an-user" p-label="Álbum"> </po-input>
@@ -13,18 +12,18 @@
 
     <!-- FormArray -->
     <po-widget>
-      <div formArrayName="musicas">
+      <div formArrayName="itens">
         <div>
           <po-button p-label="Adicionar" (p-click)="addItem()"> </po-button>
           <br />
           <br />
-          <div *ngFor="let musica of musicas.controls; let i=index">
+          <div *ngFor="let item of itens.controls; let i=index">
             <po-widget>
               <fieldset [formGroupName]="i">
                 <div class="po-row">
-                  <po-input class="po-lg-2" formControlName="numero" p-clean p-icon="an an-user" p-label="Número">
+                  <po-input class="po-lg-2" formControlName="num_musica" p-clean p-icon="an an-user" p-label="Número">
                   </po-input>
-                  <po-input class="po-md-7" formControlName="nome" p-clean p-icon="an an-user" p-label="Nome">
+                  <po-input class="po-md-7" formControlName="nom_musica" p-clean p-icon="an an-user" p-label="Nome">
                   </po-input>
                 </div>
                 <br />

@@ -52,26 +52,25 @@ export class FormComponent implements OnInit {
   }
 
   addItem() {
-    this.musicas.push(this.criarMusica({ numero: 0 } as Musica));
+    this.itens.push(this.criarMusica({ numero: 0 } as Musica));
   }
 
   criarMusica(musica: Musica): FormGroup {
     return this.fb.group({
-      numero: [musica.numero, Validators.required],
-      nome: [musica.nome, Validators.required],
+      num_musica: [musica.numero, Validators.required],
+      nom_musica: [musica.nome, Validators.required],
     });
   }
 
-  get musicas(): FormArray {
-    return this.reactiveForm.get('musicas') as FormArray;
+  get itens(): FormArray {
+    return this.reactiveForm.get('itens') as FormArray;
   }
 
   createReactiveForm() {
     this.reactiveForm = this.fb.group({
-      codigo: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(99999)])],
       artista: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
       album: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
-      musicas: this.fb.array([])
+      itens: this.fb.array([])
     });
   }
 
